@@ -1,0 +1,86 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: rgb(225, 84, 84); */
+  width: 100%;
+  border: .75px solid transparent;
+  border-radius: .75rem;
+  flex-wrap: wrap;
+}
+
+header>div,
+header>nav {
+  font-size: 1.17rem;
+}
+
+.burger-container {
+  position: relative;
+  display: none;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: all 0.3s var(--cubic);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 999;
+}
+
+.burger-container #burger {
+  width: 26px;
+  height: 8px;
+  position: relative;
+  display: block;
+  margin: -4px auto 0;
+  top: 50%;
+}
+
+.burger-container #burger .bar {
+  width: 100%;
+  height: 3px;
+  display: block;
+  position: relative;
+  background-color: #000;
+  transition: all 0.3s var(--cubic);
+  transition-delay: 0s;
+}
+
+.burger-container #burger .bar.topBar {
+  transform: translateY(0px) rotate(0deg);
+}
+
+.burger-container #burger .bar.btmBar {
+  transform: translateY(6px) rotate(0deg);
+}
+
+.burger-container.menu-opened {
+  transform: rotate(90deg);
+}
+
+.burger-container.menu-opened #burger .bar {
+  transition: all 0.4s var(--cubic);
+  transition-delay: 0.2s;
+  background-color: #fff;
+}
+
+.burger-container.menu-opened #burger .bar.topBar {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.burger-container.menu-opened #burger .bar.btmBar {
+  transform: translateY(2px) rotate(-45deg);
+}
+
+@media (max-width: 1023px) {
+  .burger-container {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 500px) {
+
+  header>div {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,29 @@
+#notfound {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  color: var(--color3);
+}
+
+.box {
+  overflow: visible;
+}
+
+#earth {
+  margin: auto;
+}
+
+#Moon {
+  animation: spin 2358720s linear infinite;
+}
+
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg);
+    transform-origin: center;
+  }
+  100% { 
+    transform: rotate(360deg);
+    transform-origin: center;
+  }
+} 

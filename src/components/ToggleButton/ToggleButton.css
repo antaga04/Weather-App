@@ -1,0 +1,81 @@
+.temp-btn {
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 2rem;
+  padding: 0rem;
+
+  border: none;
+  color: var(--color4);
+
+  display: flex;
+  align-items: center;
+  z-index: 1;
+
+  font-size: 1.17rem;
+}
+
+.temp-btn div {
+  padding: .5rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  transition: .25s -.1s;
+}
+
+.switch {
+  min-width: 45px;
+  min-height: 28px;
+  z-index: 2;
+  position: absolute;
+  top: 7%;
+  bottom: 7%;
+  border-radius: 20px;
+  background-color: #f4f4f4;
+}
+
+#fahrenheit,
+#celsius {
+  z-index: 3;
+}
+
+#fahrenheit {
+  margin-right: 9px;
+}
+
+#celsius {
+  margin-left: 6px;
+}
+
+.temp-btn.fahrenheit .switch {
+  left: 49%;
+  right: 2.9%;
+  transition: left .4s .2s, right .35s, background .35s -.1s;
+}
+
+.temp-btn.fahrenheit #fahrenheit {
+  color: var(--black);
+  transition: color .35s .2s;
+  font-weight: 900;
+}
+
+.temp-btn.fahrenheit #celsius {
+  transition: color .35s;
+}
+
+.temp-btn.celsius .switch {
+  left: 2.9%;
+  right: 57%;
+  transition: left .35s, right .4s .2s;
+}
+
+.temp-btn.celsius #celsius {
+  color: var(--black);
+  transition: color .35s .2s;
+  font-weight: 900;
+}
+
+.temp-btn.celsius #fahrenheit {
+  color: #fff;
+  transition: color .35s;
+}

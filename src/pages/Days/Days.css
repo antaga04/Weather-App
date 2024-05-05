@@ -1,0 +1,20 @@
+.days-section {
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.days-section h1 {
+  font-size: 3rem;
+}
+
+.days {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .days-section {
+    padding: .5rem 0;
+  }
+}

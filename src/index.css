@@ -1,0 +1,101 @@
+:root {
+  --black: #1e1e1e;
+  --grey: #ccc;
+  --white: rgba(255, 255, 255, 0.5);
+
+  --detail: #f26b47;
+  --btn-detail: #ffca39;
+  --blue: #3DA4C2;
+  --violet: #63e;
+  --weather: #b96fcc;
+
+  --sunny: #f1e14d;
+  --cloudy: #747981;
+  --hot: #d8b046;
+
+  --color: #951313;
+  --color2: #f7f4fa;
+  --color3: #f5ede9;
+  --woodlandNight: #4d575a;
+
+  --blueCharcoal: #010314;
+  --blueCharcoal2: #010d14;
+  --greyBack: #b4babd;
+
+  --noise: url('/img-noise-361x370.png');
+  --crisp: url('/crisp_q9lzph.png');
+  --font-regular: 'Helvetica', serif;
+  --mukta: 'Mukta', sans-serif;
+
+  --cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);
+}
+
+.celsius {
+  --background: #eaedf1;
+  --color4: #0e0f10;
+  --oposite: #1e1e1e;
+}
+
+.fahrenheit {
+  --background: #0e0f10;
+  --color4: #fff;
+  --oposite: #efefef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-regular);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  /* background-image: var(--crisp), radial-gradient(128.66% 61.77% at 62% 92.75%, var(--blueCharcoal) 31.41%, #3da4c2 68.27%, #fff 188%) !important; */
+  /* overscroll-behavior: none; */
+  background-attachment: fixed;
+  background-color: var(--blueCharcoal);
+  background-image: var(--crisp), radial-gradient(128.66% 112.77% at 62% 96.75%, var(--blueCharcoal) 31.41%, var(--weather) 63.27%, #fff 107%) !important;
+  background-position: 0 0, 0 0;
+  background-size: auto, auto;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  color: #fff;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 76.8svh;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  #root {
+    padding-bottom: 6rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  body {
+    background-image: var(--crisp), radial-gradient(142.66% 109.77% at 51% 96.75%, var(--blueCharcoal) 31.41%, var(--weather) 63.27%, #fff 107%) !important;
+  }
+}

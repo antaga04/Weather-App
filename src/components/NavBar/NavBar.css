@@ -1,0 +1,53 @@
+.navBar {
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(242, 242, 242, .3);
+  padding: .3rem;
+  color: #f2f2f2;
+  background: #111;
+  border-radius: 1.5rem;
+}
+
+.navList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navList>li {
+  padding: 0;
+  border-radius: 24px;
+}
+
+nav a {
+  display: block;
+  transition: color .25s ease-in-out;
+  padding: .5rem 1rem;
+  border-radius: 3rem;
+}
+
+nav a:hover {
+  color: var(--detail);
+}
+
+nav a.active {
+  color: var(--blueCharcoal);
+  font-weight: 900;
+  border-radius: 24px;
+  /* background-color: rgba(242, 242, 242, .5); */
+  background: var(--detail);
+}
+
+@media (max-width: 767px) {
+  .navBar {
+    position: fixed;
+    bottom: 2rem;
+    z-index: 99;
+    left: 50%;
+    translate: -50%;
+  }
+
+  .navBar-container {
+    width: 100%;
+  }
+
+}

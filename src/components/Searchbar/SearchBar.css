@@ -1,0 +1,27 @@
+.async-paginate {
+  /* margin: 1rem 0; */
+  padding: 2rem 2rem 0;
+
+  position: sticky !important;
+  top: 0;
+  z-index: 9;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 1023px) {
+  .async-paginate {
+    background-color: #000;
+    /* margin: .7rem 0;
+    padding: .7rem 2rem;
+    width: 90%; */
+    opacity: 0;
+    transition: opacity 0.6s var(--cubic);
+
+    margin: 0;
+    padding: 1.6rem 4.3rem 1.6rem 2rem;
+  }
+
+  .window.menu-opened .async-paginate {
+    opacity: 1;
+  }
+}

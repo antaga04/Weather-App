@@ -1,0 +1,25 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.window .header {
+  width: 100%;
+}
+
+.w-container {
+  height: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 1023px) {
+  .window {
+    padding: 0;
+  }
+}
