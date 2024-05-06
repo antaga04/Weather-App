@@ -18,6 +18,11 @@ export const transformTemperature = (temp, unit) => {
   }
 };
 
+export const getRandomCity = (defaultCities) => {
+  const randomIndex = Math.floor(Math.random() * defaultCities.length);
+  return defaultCities[randomIndex];
+};
+
 export const setWeatherColor = (temperature, weatherDescription) => {
   let color;
 
@@ -29,13 +34,17 @@ export const setWeatherColor = (temperature, weatherDescription) => {
     case 'few clouds':
     case 'scattered clouds':
     case 'broken clouds':
-      color = '#769eb2'; // Azul claro para nubes dispersas
+      color = '#b4ac66';
+      // color = '#769eb2';
       break;
     case 'overcast clouds':
       color = '#4f6470'; // Gris para nubes nubladas
       break;
     case 'shower rain':
+    case 'light intensity shower rain':
+    case 'moderate rain':
     case 'rain':
+    case 'drizzle':
     case 'light rain':
       color = '#316f98'; // Azul para lluvia
       break;

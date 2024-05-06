@@ -1,3 +1,72 @@
 .hours-section {
   padding: 1rem;
+  color: #fff;
+  align-items: self-start;
+}
+
+.hours-section ul {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 100%;
+  max-width: 950px;
+  margin: 1rem auto 0;
+}
+
+.hours-section ul li {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.hours-section ul li:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.hour-info {
+  align-items: center;
+  background-color: rgb(101 101 101 / 30%);
+  /* background-color: rgb(33 33 33 / 75%); */
+  display: flex;
+  font-size: 1.5rem;
+  gap: 1.2rem;
+  padding: 0rem 1rem;
+  width: 100%;
+  border-radius: 1.25rem;
+}
+
+.hour-info .time {
+  font-size: 1.1rem;
+}
+
+.hour-info .icon {
+  width: 4rem;
+  height: auto;
+  fill: var(--detail);
+}
+
+.hour-info .temp {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--grey);
+}
+
+
+.hour-info .temp>:nth-child(1) {
+  font-size: 1.8rem;
+}
+
+.hour-info .temp>:nth-child(2) {
+  font-size: 1.15rem;
+}
+
+.hour-info .temp>:nth-child(3) {
+  font-size: 1.3rem;
+}
+
+.hour-info .description {
+  font-size: 2rem;
+  /* color: #000; */
+  font-weight: 900;
 }

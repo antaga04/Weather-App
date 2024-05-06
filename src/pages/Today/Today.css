@@ -71,8 +71,8 @@
   height: 100%;
   /* max-width: 290px; */
   max-width: 250px;
-  /* fill: var(--detail); */
-  fill: rgba(7, 7, 7, 0.9);
+  fill: var(--detail);
+  /* fill: rgba(7, 7, 7, 0.9); */
 }
 
 /* details */
@@ -81,7 +81,7 @@
   width: 100%;
   display: grid;
   /* grid-template-columns: repeat(3, minmax(250px, 300px)); */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: .75rem;
 }
 

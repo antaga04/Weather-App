@@ -7,7 +7,8 @@
   --btn-detail: #ffca39;
   --blue: #3DA4C2;
   --violet: #63e;
-  --weather: #b96fcc;
+  --pink: #b96fcc;
+  --weather: #f26b47;
 
   --sunny: #f1e14d;
   --cloudy: #747981;
@@ -63,7 +64,7 @@ body {
   /* overscroll-behavior: none; */
   background-attachment: fixed;
   background-color: var(--blueCharcoal);
-  background-image: var(--crisp), radial-gradient(128.66% 112.77% at 62% 96.75%, var(--blueCharcoal) 31.41%, var(--weather) 63.27%, #fff 107%) !important;
+  background-image: var(--crisp), radial-gradient(128.66% 112.77% at 59% 96.75%, var(--blueCharcoal) 31.41%, var(--weather) 63.27%, #fff 107%) !important;
   background-position: 0 0, 0 0;
   background-size: auto, auto;
   scroll-behavior: smooth;
@@ -77,9 +78,9 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: space-between;
   width: 100%;
   min-height: 76.8svh;
+  max-width: 1440px;
 }
 
 .flex-center {

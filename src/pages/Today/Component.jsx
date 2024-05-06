@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import {
+  ArrowCircleIcon,
   CloudSolidIcon,
+  GaugeIcon,
   HumidityIcon,
   SunriseIcon,
   Sunset,
   VisibilityIcon,
   WindIcon,
-} from '../components/Icons/Icons';
-import Detail from '../components/Detail/Detail';
-import { setWeatherColor, transformTemperature, utcToLocal } from '../utils/functions';
-import { useTemperatureUnit } from '../contexts/TemperatureUnitContext';
-import { WeatherIcon } from './Icons/WeatherIcon';
+} from '../../components/Icons/Icons';
+import Detail from '../../components/Detail/Detail';
+import { setWeatherColor, transformTemperature, utcToLocal } from '../../utils/functions';
+import { useTemperatureUnit } from '../../contexts/TemperatureUnitContext';
+import { WeatherIcon } from '../../components/Icons/WeatherIcon';
 
 const Component = ({ selectedCity, weatherData }) => {
   const { unit } = useTemperatureUnit();
 
   useEffect(() => {
-    if (weatherData && weatherData.main && weatherData.main.temp) {
+    if (weatherData) {
       setWeatherColor(weatherData.main.temp, weatherData.weather[0].description);
     }
   }, [weatherData]);
@@ -54,7 +56,14 @@ const Component = ({ selectedCity, weatherData }) => {
           info={`${Math.round(weatherData?.wind.speed * 3.6)}km/h`}
           icon={WindIcon}
         />
+        <Detail
+          title={'Wind Degre'}
+          info={`${weatherData?.wind.deg}º`}
+          icon={ArrowCircleIcon}
+          rotate={weatherData?.wind.deg}
+        />
         <Detail title={'Clouds'} info={`${weatherData?.clouds.all}%`} icon={CloudSolidIcon} />
+        <Detail title={'Pressure'} info={`${weatherData?.main.pressure}hPa`} icon={GaugeIcon} />
       </div>
     </>
   );

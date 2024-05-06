@@ -4,19 +4,19 @@ import { NavLink } from 'react-router-dom';
 import { useCity } from '../../contexts/CityContext';
 
 const NavBar = () => {
-  const { selectedCity } = useCity();
+  // const { selectedCity } = useCity();
 
   return (
     <nav className="navBar">
       <ul className="navList">
         <li>
-          <NavLink to={`/today/${selectedCity?.label}`}>Today</NavLink>
+          <NavLink to={`/`}>Today</NavLink>
         </li>
         <li>
-          <NavLink to={`/hours/${selectedCity?.label}`}>Hours</NavLink>
+          <NavLink to={`/hours`}>Hours</NavLink>
         </li>
         <li>
-          <NavLink to={`/days/${selectedCity?.label}`}>Days</NavLink>
+          <NavLink to={`/days`}>Days</NavLink>
         </li>
       </ul>
     </nav>

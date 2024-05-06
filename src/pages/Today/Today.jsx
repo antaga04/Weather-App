@@ -2,27 +2,22 @@ import React, { useEffect, useState } from 'react';
 import './Today.css';
 import { useCity } from '../../contexts/CityContext';
 import Spinner from '../../components/Spinner/Spinner';
-import Component from '../../components/Component';
+import Component from './Component';
 import { fetchWeatherData } from '../../services/weatherService';
 import { WEATHER_API_URL } from '../../services/API';
-import { useParams } from 'react-router-dom';
 
 const CACHE_EXPIRATION_TIME = 900000;
 
 const Today = () => {
-  const { cityId } = useParams();
-  const { selectedCity, updateSelectedCity } = useCity();
+  const { selectedCity } = useCity();
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-      // updateSelectedCity(cityId);
-      console.log('selected', selectedCity);
-      console.log('cityID',cityId);
       try {
-        const data = await fetchData(selectedCity);
+        const data = await fetchData(selectedCity, WEATHER_API_URL, 'weather');
         setWeatherData(data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -43,12 +38,12 @@ const Today = () => {
   );
 };
 
-const fetchData = async (selectedCity) => {
+const fetchData = async (selectedCity, url, option) => {
   const cachedData = getWeatherDataFromLocalStorage(selectedCity);
   if (cachedData && !isDataExpired(cachedData)) {
     return cachedData;
   } else {
-    const data = await fetchWeatherData(selectedCity, WEATHER_API_URL);
+    const data = await fetchWeatherData(selectedCity, url, option);
     saveWeatherDataToLocalStorage(selectedCity, data);
     return data;
   }

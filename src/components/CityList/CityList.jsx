@@ -3,31 +3,21 @@ import './CityList.css';
 import { XIcon, HeartIcon } from '../Icons/Icons';
 import { useCity } from '../../contexts/CityContext';
 import { Link, useLocation } from 'react-router-dom';
-
-const listaPorDefecto = [
-  { value: '40.4165 -3.7026', label: 'Madrid, ES' },
-  { value: '40.7128 -74.0060', label: 'New York City, US' },
-  { value: '35.683889 139.774444', label: 'Tokyo, JP' },
-  { value: '41.9028 12.4964', label: 'Rome, IT' },
-  { value: '-34.599722222 -58.381944444', label: 'Buenos Aires, AR' },
-  { value: '45.424722222 -75.695', label: 'Ottawa, CA' },
-  { value: '10.4806 -66.9036', label: 'Caracas, VE' },
-  { value: '-12.0464 -77.0428', label: 'Lima, PE' },
-];
+import { defaultCities } from '../../services/weatherService';
 
 const CityList = ({ newCity, setNewCity, closeMenu }) => {
   const [items, setItems] = useState([]);
   const { currentCity, selectedCity, updateSelectedCity } = useCity();
-  const location = useLocation();
-  const basePath = location.pathname.split('/').slice(0, 2).join('/');
+  //! const location = useLocation();
+  //! const basePath = location.pathname.split('/').slice(0, 2).join('/');
 
   useEffect(() => {
     const storedItems = localStorage.getItem('items');
     if (storedItems) {
       setItems(JSON.parse(storedItems));
     } else {
-      setItems(listaPorDefecto);
-      localStorage.setItem('items', JSON.stringify(listaPorDefecto));
+      setItems(defaultCities);
+      localStorage.setItem('items', JSON.stringify(defaultCities));
     }
   }, []);
 
@@ -51,16 +41,26 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
   };
 
   const handleCityClick = (city) => {
-    updateSelectedCity(city);
-    closeMenu();
+    if (Object.keys(city).length === 0) {
+      alert(`You must grant geolocation access to get current location forecast!`);
+    } else {
+      updateSelectedCity(city);
+      closeMenu();
+    }
   };
 
   return (
     <>
       <ul className="city-list">
         {newCity && (
-          <li className="city-item newCity">
-            <p className="city">{newCity.label}</p>
+          <li
+            className={`city-item newCity ${
+              selectedCity && selectedCity.label === newCity.label ? 'selected' : ''
+            }`}
+          >
+            <button className="city" onClick={() => handleCityClick(newCity)}>
+              {newCity.label}
+            </button>
             <button className="addBtn" onClick={() => addCity(newCity)}>
               {HeartIcon()}
             </button>
@@ -71,13 +71,9 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
             selectedCity && selectedCity.label === currentCity.label ? 'selected' : ''
           }`}
         >
-          <Link
-            to={`${basePath}/My Location`}
-            className="city"
-            onClick={() => handleCityClick(currentCity)}
-          >
+          <button className="city" onClick={() => handleCityClick(currentCity)}>
             My Location
-          </Link>
+          </button>
         </li>
         {items.map((item, index) => (
           <li
@@ -86,13 +82,9 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
               selectedCity && selectedCity.label === item.label ? 'selected' : ''
             }`}
           >
-            <Link
-              to={`${basePath}/${item.label}`}
-              className="city"
-              onClick={() => handleCityClick(item)}
-            >
+            <button className="city" onClick={() => handleCityClick(item)}>
               {item.label}
-            </Link>
+            </button>
             <button className="deleteBtn" onClick={() => removeCity(index)}>
               {XIcon()}
             </button>

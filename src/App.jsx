@@ -3,6 +3,8 @@ import './App.css';
 import Header from './components/Header/Header';
 import { useEffect } from 'react';
 import { useCity } from './contexts/CityContext';
+import { getRandomCity } from './utils/functions';
+import { defaultCities } from './services/weatherService';
 
 function App() {
   const { updateCurrentCity, updateSelectedCity } = useCity();
@@ -20,9 +22,6 @@ function App() {
       updateCurrentCity(location);
       updateSelectedCity(location);
       console.log('Current position:');
-      /* console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`); */
     }
 
     function errors(err) {
@@ -31,16 +30,12 @@ function App() {
 
     if (navigator.geolocation) {
       navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
-        // console.log(result);
         if (result.state === 'granted') {
           navigator.geolocation.getCurrentPosition(success, errors, options);
         } else if (result.state === 'prompt') {
           navigator.geolocation.getCurrentPosition(success, errors, options);
         } else if (result.state === 'denied') {
-          updateSelectedCity({
-            value: '40.4168 -3.7038',
-            label: 'Madrid, ES',
-          });
+          updateSelectedCity(getRandomCity(defaultCities));
         }
       });
     } else {

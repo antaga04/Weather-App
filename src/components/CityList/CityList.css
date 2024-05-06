@@ -31,6 +31,7 @@
   display: block;
   list-style: none;
   padding: 0 2rem;
+  margin: .5rem 0 0;
   /* overflow-y: scroll;
   overflow-x: hidden; */
 }
@@ -59,11 +60,15 @@
   font-weight: 200;
   width: 100%;
   transition: color .25s ease-in-out;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
 }
 
 .city-item .city:hover,
 .city-item .city:active,
-.city-item.selected  .city{
+.city-item.selected .city {
   color: var(--detail) !important;
 }
 
