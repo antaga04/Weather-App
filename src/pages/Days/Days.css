@@ -3,14 +3,52 @@
   gap: 1rem;
 }
 
-.days-section h1 {
-  font-size: 3rem;
+.days-section .wrapper {
+  display: flex;
+  margin: 1rem 0 0;
 }
 
-.days {
+.days-section ul {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: .75rem;
+}
+
+.days-section li {
+  width: 100%;
+}
+
+.days-section .card {
+  background-color: rgba(16, 16, 16, .15);
+  color: var(--color3);
+  padding: .5rem 1rem 0;
+}
+
+.days-section .card .day {
+  margin-bottom: .25rem;
+}
+
+.days-section .details {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  justify-content: space-around;
+}
+
+.days-section .details .temp span:nth-child(2) {
+  color: #aeaeae;
+}
+
+.days-section .pop {
+  gap: .5rem;
+}
+
+.days-section .daydetails {
+  padding: 1rem;
+  width: 100%;
+  border-width: 3px;
+  border-style: ridge;
 }
 
 @media (max-width: 767px) {

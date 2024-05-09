@@ -1,20 +1,12 @@
 import React from 'react';
 import './Days.css';
-import Day from '../../components/Day/Day';
-import { CloudSolidIcon, SunIcon } from '../../components/Icons/Icons';
+import WeatherComponent from '../../components/WeatherComponent';
+import DaysTemplate from './DaysTemplate';
+import { FORECAST_API_URL } from '../../services/API';
 
 const Days = () => {
   return (
-    <main className="days-section">
-      <h1>Bialystok, PL</h1>
-      <div className="days">
-        <Day day="WED" icon={SunIcon} />
-        <Day day="THU" icon={CloudSolidIcon} />
-        <Day day="FRI" icon={SunIcon} />
-        <Day day="SAT" icon={CloudSolidIcon} />
-        <Day day="SUN" icon={SunIcon} />
-      </div>
-    </main>
+    <WeatherComponent apiOption={FORECAST_API_URL} Component={DaysTemplate} section="days-section" />
   );
 };
 
