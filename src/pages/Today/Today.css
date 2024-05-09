@@ -1,14 +1,10 @@
-.today-section {
-  align-items: center;
-}
-
 .overview {
   display: flex;
-  width: 100%;
+  flex-wrap: wrap;
   height: 100%;
   justify-content: space-between;
   padding: 1rem 0;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .overview h2 {
@@ -62,17 +58,15 @@
   font-size: 3rem;
 }
 
-#weather-icon {
+.overview .icon {
   margin: -3rem auto
 }
 
-#weather-icon svg {
+.overview .icon svg {
   width: 100%;
   height: 100%;
-  /* max-width: 290px; */
   max-width: 250px;
   fill: var(--detail);
-  /* fill: rgba(7, 7, 7, 0.9); */
 }
 
 /* details */
@@ -80,7 +74,6 @@
 .today-details {
   width: 100%;
   display: grid;
-  /* grid-template-columns: repeat(3, minmax(250px, 300px)); */
   grid-template-columns: repeat(4, 1fr);
   grid-gap: .75rem;
 }
@@ -115,6 +108,7 @@
   .info-max-min {
     grid-column: 4;
     flex-direction: column;
+    font-size: 1.2rem;
   }
 
   .info {

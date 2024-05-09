@@ -12,7 +12,7 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 3px;
-  background: #FFF;
+  background: var(--color3);
 }
 
 #spinner .block:nth-child(4n+1) {

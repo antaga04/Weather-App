@@ -1,7 +1,7 @@
 .hours-section {
-  padding: 1rem;
-  color: #fff;
+  color: var(--color3);
   align-items: self-start;
+  margin-top: .75rem;
 }
 
 .hours-section ul {
@@ -13,43 +13,55 @@
   margin: 1rem auto 0;
 }
 
-.hours-section ul li {
+.hours-section>ul>li {
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: .625rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0);
+  min-height: 4.5rem;
+  padding: .5rem 1rem;
+}
+
+.hours-section #details {
   align-items: center;
+  cursor: pointer;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
 }
 
-.hours-section ul li:nth-child(even) {
-  flex-direction: row-reverse;
+.hour-info,
+.hour-details {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .hour-info {
-  align-items: center;
-  background-color: rgb(101 101 101 / 30%);
-  /* background-color: rgb(33 33 33 / 75%); */
-  display: flex;
   font-size: 1.5rem;
   gap: 1.2rem;
-  padding: 0rem 1rem;
-  width: 100%;
-  border-radius: 1.25rem;
+  font-weight: bold;
+}
+
+.hour-details {
+  gap: .5rem;
 }
 
 .hour-info .time {
   font-size: 1.1rem;
-}
-
-.hour-info .icon {
-  width: 4rem;
+  width: 2.8rem;
   height: auto;
-  fill: var(--detail);
 }
 
 .hour-info .temp {
   display: flex;
   align-items: center;
   gap: .5rem;
-  color: var(--grey);
+  width: 3.75rem;
+  height: auto;
+  justify-content: flex-end;
 }
 
 
@@ -65,8 +77,77 @@
   font-size: 1.3rem;
 }
 
-.hour-info .description {
-  font-size: 2rem;
-  /* color: #000; */
-  font-weight: 900;
+.hours-section .pop {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  min-width: 5.35rem;
+  justify-content: end;
+}
+
+.hidden-details {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(.4, 0, .2, 1);
+  color: var(--black);
+}
+
+.hidden-details .content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .5rem;
+  overflow: hidden;
+}
+
+.hidden-details.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.hours-section .content div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(240 248 255 / 45%);
+  border-radius: 1rem;
+  padding: .5rem .25rem;
+}
+
+.hours-section .content svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: var(--detail);
+}
+
+.hours-section .content div p:nth-child(1) {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 500px) {
+  .hours-section ul li {
+    padding: .75rem;
+    gap: 0;
+  }
+
+  .hour-info {
+    margin: .5rem auto 0;
+  }
+
+  .hours-section .pop {
+    justify-content: end;
+  }
+
+  .hour-details {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    gap: .25rem;
+  }
+
+  .hidden-details {
+    margin-top: .5rem;
+  }
 }

@@ -4,7 +4,7 @@
   padding: 0rem;
 
   border: none;
-  color: var(--color4);
+  color: var(--color3);
 
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@
   top: 7%;
   bottom: 7%;
   border-radius: 20px;
-  background-color: #f4f4f4;
+  background-color: var(--color3);
 }
 
 #fahrenheit,
@@ -76,6 +76,5 @@
 }
 
 .temp-btn.celsius #fahrenheit {
-  color: #fff;
   transition: color .35s;
 }

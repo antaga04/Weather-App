@@ -31,10 +31,8 @@
   height: 5.5rem;
 }
 
-@media (max-width: 767px) {
-  .glare-item-top.outer-edge {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 15%, rgba(255, 255, 255, .8) 35%, #fff 50%, rgba(255, 255, 255, .8) 65%, rgba(0, 0, 0, 0) 85%);
-  }
+.glare-item-top.outer-edge {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 13%, rgba(255, 255, 255, .8) 35%, #fff 50%, rgba(255, 255, 255, .8) 65%, rgba(0, 0, 0, 0) 85%);
 }
 
 @media (max-width: 500px) {
