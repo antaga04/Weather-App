@@ -1,5 +1,5 @@
 export const fetchWeatherData = async (city, url, option) => {
-  console.log('---- FETCH ----');
+  console.log(`-- FETCH ${option} --`);
   const [lat, lon] = city.value.split(' ');
   const newURL = `${url}/${option}?lat=${lat}&lon=${lon}&appid=${
     import.meta.env.VITE_PUBLIC_WEATHER_API_KEY
