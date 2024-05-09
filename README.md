@@ -48,3 +48,9 @@ feature: browser history [done]
 5. Arreglar scroll searchMenu. Se tiene que ver las opciones del buscador. [✅]
 6. Pensar en geolocalización en un tren (navigator.geolocation.watchPosition). [ ]
 
+escoger color de fondo en hours y days en [0] o [1] dependiendo de la hora coger el más cercano.
+
+[FUNCIONALIDAD] poder guardar en favoritos tu ubicación actual.
+si no se puede buscar porque tiene poca población al menos dejarla guardada.
+
+También implementar el reorden de la lista.
