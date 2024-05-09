@@ -13,7 +13,7 @@ import {
   WaterIcon,
 } from './Icons';
 
-export function WeatherIcon({ code }) {
+export function WeatherIcon({ code, css }) {
   const getIcon = (code) => {
     switch (code) {
       case '01d':
@@ -49,5 +49,5 @@ export function WeatherIcon({ code }) {
     }
   };
 
-  return <div id="weather-icon">{getIcon(code)}</div>;
+  return <div className={css}>{getIcon(code)}</div>;
 }
