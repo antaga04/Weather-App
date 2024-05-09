@@ -3,12 +3,14 @@ import './SearchBar.css';
 import { AsyncPaginate } from 'react-select-async-paginate';
 import { GEO_API_URL, geoApiOptions } from '../../services/API';
 
+const GEO_POPULATION = 50000;
+
 const SearchBar = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
 
   const loadOptions = (inputValue) => {
     return fetch(
-      `${GEO_API_URL}/cities?minPopulation=500000&namePrefix=${inputValue}`,
+      `${GEO_API_URL}/cities?minPopulation=${GEO_POPULATION}&namePrefix=${inputValue}`,
       geoApiOptions
     )
       .then((response) => response.json())
@@ -38,7 +40,7 @@ const SearchBar = ({ onSearchChange }) => {
         value={search}
         onChange={handleOnChange}
         loadOptions={loadOptions}
-        className='async-paginate'
+        className="async-paginate"
       />
     </>
   );
