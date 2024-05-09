@@ -17,7 +17,11 @@ const Footer = () => {
           </a>
         </li>
       </ul>
-      <p>Built by Adrian Anta</p>
+      <p>
+        <a href="https://adrian-anta.netlify.app/" target='blank' className="portfolio">
+          Built by Adrian Anta
+        </a>
+      </p>
     </footer>
   );
 };
