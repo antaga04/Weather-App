@@ -26,43 +26,44 @@ export const getRandomCity = (defaultCities) => {
 export const setWeatherColor = (temperature, weatherDescription) => {
   let color;
 
-  // Asignar colores basados en la descripción del tiempo
   switch (weatherDescription) {
     case 'clear sky':
-      color = '#FFCC00'; // Amarillo para cielo despejado
+      color = '#FFCC00';
       break;
     case 'few clouds':
     case 'scattered clouds':
     case 'broken clouds':
-      color = '#b4ac66';
+      color = '#7d879b';
+      // color = '#b4ac66';
       // color = '#769eb2';
       break;
     case 'overcast clouds':
-      color = '#4f6470'; // Gris para nubes nubladas
+      color = '#4f6470';
       break;
     case 'shower rain':
+    case 'heavy intensity rain':
     case 'light intensity shower rain':
     case 'moderate rain':
     case 'rain':
     case 'drizzle':
     case 'light rain':
-      color = '#316f98'; // Azul para lluvia
+      color = '#316f98';
       break;
     case 'thunderstorm':
-      color = '#FF3300'; // Rojo para tormentas
+      color = '#FF3300';
       break;
     case 'snow':
-      color = '#d9d9d9'; // Blanco para nieve
+      color = '#d9d9d9';
       break;
     case 'mist':
-      color = '#c6c6c6'; // Gris claro para niebla
+    case 'haze':
+    case 'fog':
+      color = '#c6c6c6';
       break;
     default:
-      color = '#b96fcc'; // Violeta por defecto
+      color = '#b96fcc';
       break;
   }
-
-  // Establecer el color del fondo
   document.documentElement.style.setProperty('--weather', color);
 };
 
