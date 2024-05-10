@@ -5,6 +5,42 @@
   color: var(--color3);
 }
 
+.notfound {
+  padding: 2rem;
+  background-color: rgba(7, 7, 7, .5);
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.notfound h2 {
+  color: var(--detail3);
+}
+
+.notfound svg {
+  fill: var(--detail);
+  width: 14rem;
+  height: 14rem;
+}
+
+.notfound a {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.panEffect {
+  animation: background-pan 3s linear infinite;
+  background: linear-gradient(to right,
+      var(--detail),
+      var(--detail2),
+      var(--detail3),
+      var(--detail));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
 .box {
   overflow: visible;
 }
@@ -18,12 +54,13 @@
 }
 
 @keyframes spin {
-  0% { 
+  0% {
     transform: rotate(0deg);
     transform-origin: center;
   }
-  100% { 
+
+  100% {
     transform: rotate(360deg);
     transform-origin: center;
   }
-} 
+}
