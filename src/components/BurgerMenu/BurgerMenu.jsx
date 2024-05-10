@@ -10,7 +10,6 @@ const BurgerMenu = ({ isMenuOpened, closeMenu }) => {
   const { updateSelectedCity } = useCity();
 
   const handleOnSearchChange = (searchData) => {
-    console.log(searchData);
     updateSelectedCity(searchData);
     setNewCity(searchData);
     closeMenu();
@@ -21,7 +20,7 @@ const BurgerMenu = ({ isMenuOpened, closeMenu }) => {
       <aside id="search-bar" className={`${isMenuOpened ? 'menu-opened' : ''}`}>
         <div className={`window ${isMenuOpened ? 'menu-opened' : ''}`}>
           <SearchBar onSearchChange={handleOnSearchChange} />
-          <div className='w-container'>
+          <div className="w-container">
             <CityList newCity={newCity} setNewCity={setNewCity} closeMenu={closeMenu} />
             <Footer />
           </div>
