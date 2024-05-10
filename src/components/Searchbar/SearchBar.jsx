@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { GEO_API_URL, geoApiOptions } from '../../services/API';
-
-const GEO_POPULATION = 50000;
+import { GEO_API_URL, GEO_POPULATION, geoApiOptions } from '../../services/API';
 
 const SearchBar = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
