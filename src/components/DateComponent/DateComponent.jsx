@@ -7,7 +7,7 @@ const DateComponent = () => {
 
   const currentDate = new Date();
   const day = currentDate.getDate();
-  const month = currentDate.getMonth() + 1;
+  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
   const year = currentDate.getFullYear();
   const dayOfWeek = currentDate.getDay();
 
