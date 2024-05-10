@@ -12,12 +12,12 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
   //! const basePath = location.pathname.split('/').slice(0, 2).join('/');
 
   useEffect(() => {
-    const storedItems = localStorage.getItem('items');
+    const storedItems = localStorage.getItem('w-cities');
     if (storedItems) {
       setItems(JSON.parse(storedItems));
     } else {
       setItems(defaultCities);
-      localStorage.setItem('items', JSON.stringify(defaultCities));
+      localStorage.setItem('w-cities', JSON.stringify(defaultCities));
     }
   }, []);
 
@@ -25,7 +25,7 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
     const nuevosItems = [...items];
     nuevosItems.splice(index, 1);
     setItems(nuevosItems);
-    localStorage.setItem('items', JSON.stringify(nuevosItems));
+    localStorage.setItem('w-cities', JSON.stringify(nuevosItems));
   };
 
   const addCity = (city) => {
