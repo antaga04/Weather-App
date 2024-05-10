@@ -1,6 +1,6 @@
 .async-paginate {
   backdrop-filter: blur(4px);
-  padding: 2rem 2rem 0;
+  padding: 2rem 1.75rem 0;
   z-index: 9;
 }
 

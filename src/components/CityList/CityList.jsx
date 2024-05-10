@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './CityList.css';
-import { XIcon, HeartIcon } from '../Icons/Icons';
+import { XIcon, HeartIcon, ListUl } from '../Icons/Icons';
 import { useCity } from '../../contexts/CityContext';
-import { Link, useLocation } from 'react-router-dom';
 import { defaultCities } from '../../services/weatherService';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const CityList = ({ newCity, setNewCity, closeMenu }) => {
-  const [items, setItems] = useState([]);
   const { currentCity, selectedCity, updateSelectedCity } = useCity();
-  //! const location = useLocation();
-  //! const basePath = location.pathname.split('/').slice(0, 2).join('/');
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     const storedItems = localStorage.getItem('w-cities');
@@ -32,7 +30,7 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
     if (!items.some((item) => item.label === city.label)) {
       const nuevosItems = [...items, city];
       setItems(nuevosItems);
-      localStorage.setItem('items', JSON.stringify(nuevosItems));
+      localStorage.setItem('w-cities', JSON.stringify(nuevosItems));
       setNewCity('');
     } else {
       console.log(`La ciudad "${city.label}" ya está en la lista.`);
@@ -49,49 +47,75 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
     }
   };
 
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+    const newItems = Array.from(items);
+    const [reorderedItem] = newItems.splice(result.source.index, 1);
+    newItems.splice(result.destination.index, 0, reorderedItem);
+    setItems(newItems);
+    localStorage.setItem('w-cities', JSON.stringify(newItems));
+  };
+
   return (
-    <>
-      <ul className="city-list">
-        {newCity && (
-          <li
-            className={`city-item newCity ${
-              selectedCity && selectedCity.label === newCity.label ? 'selected' : ''
-            }`}
-          >
-            <button className="city" onClick={() => handleCityClick(newCity)}>
-              {newCity.label}
-            </button>
-            <button className="addBtn" onClick={() => addCity(newCity)}>
-              {HeartIcon()}
-            </button>
-          </li>
-        )}
+    <ul className="city-list">
+      {newCity && (
         <li
-          className={`city-item ${
-            selectedCity && selectedCity.label === currentCity.label ? 'selected' : ''
+          className={`city-item newCity ${
+            selectedCity && selectedCity.label === newCity.label ? 'selected' : ''
           }`}
         >
-          <button className="city" onClick={() => handleCityClick(currentCity)}>
-            My Location
+          <button className="city" onClick={() => handleCityClick(newCity)}>
+            {newCity.label}
+          </button>
+          <button className="addBtn" onClick={() => addCity(newCity)}>
+            {HeartIcon()}
           </button>
         </li>
-        {items.map((item, index) => (
-          <li
-            key={index}
-            className={`city-item ${
-              selectedCity && selectedCity.label === item.label ? 'selected' : ''
-            }`}
-          >
-            <button className="city" onClick={() => handleCityClick(item)}>
-              {item.label}
-            </button>
-            <button className="deleteBtn" onClick={() => removeCity(index)}>
-              {XIcon()}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </>
+      )}
+      <li
+        className={`city-item ${
+          selectedCity && selectedCity.label === currentCity.label ? 'selected' : ''
+        }`}
+      >
+        <button className="city" onClick={() => handleCityClick(currentCity)}>
+          My Location
+        </button>
+      </li>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              {items.map((item, index) => (
+                <Draggable key={item.label} draggableId={item.label} index={index}>
+                  {(provided) => (
+                    <li
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      className={`city-item ${
+                        selectedCity && selectedCity.label === item.label ? 'selected' : ''
+                      }`}
+                    >
+                      <div {...provided.dragHandleProps}>
+                        <span className="dragBtn">
+                          <ListUl />
+                        </span>
+                      </div>
+                      <button className="city" onClick={() => handleCityClick(item)}>
+                        {item.label}
+                      </button>
+                      <button className="deleteBtn" onClick={() => removeCity(index)}>
+                        {XIcon()}
+                      </button>
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </ul>
   );
 };
 
