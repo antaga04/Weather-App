@@ -21,7 +21,7 @@ function App() {
       };
       updateCurrentCity(location);
       updateSelectedCity(location);
-      console.log('Current position:');
+      // console.log('Current position:');
     }
 
     function errors(err) {
