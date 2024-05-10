@@ -35,6 +35,7 @@
 
 .days-section .card .day {
   margin-bottom: .25rem;
+  text-transform: uppercase;
 }
 
 .days-section .details {
