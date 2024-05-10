@@ -19,12 +19,12 @@ export const fetchWeatherData = async (city, url, option) => {
 };
 
 export const defaultCities = [
+  { value: '53.12744 23.15649', label: 'Białystok, PL' },
   { value: '40.4165 -3.7026', label: 'Madrid, ES' },
+  { value: '41.01 28.960277777', label: 'Istanbul, TR' },
+  { value: '42.340833333 -3.699722222', label: 'Burgos, ES' },
   { value: '40.7128 -74.0060', label: 'New York City, US' },
   { value: '35.683889 139.774444', label: 'Tokyo, JP' },
-  { value: '41.9028 12.4964', label: 'Rome, IT' },
-  { value: '-34.599722222 -58.381944444', label: 'Buenos Aires, AR' },
-  { value: '45.424722222 -75.695', label: 'Ottawa, CA' },
-  { value: '10.4806 -66.9036', label: 'Caracas, VE' },
-  { value: '-12.0464 -77.0428', label: 'Lima, PE' },
+  { value: '37.986111111 -1.130277777', label: 'Murcia, ES' },
+  { value: '40.833333333 14.25', label: 'Naples, IT' },
 ];
