@@ -8,6 +8,8 @@ export const geoApiOptions = {
   },
 };
 
+export const GEO_POPULATION = 50000;
+
 export const OPENWEATHER_API_URL = 'https://api.openweathermap.org/data/2.5';
 export const FORECAST_API_URL = 'forecast';
 export const WEATHER_API_URL = 'weather';
