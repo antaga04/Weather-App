@@ -2,7 +2,7 @@ import React from 'react';
 import './Hours.css';
 import WeatherComponent from '../../components/WeatherComponent';
 import HoursTemplate from './HoursTemplate';
-import { FORECAST_API_URL } from '../../services/API';
+import { FORECAST_API_URL } from '../../services/api';
 
 const Hours = () => {
   return (
