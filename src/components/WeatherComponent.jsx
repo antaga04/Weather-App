@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useCity } from '../contexts/CityContext';
 import Spinner from './Spinner/Spinner';
 import { fetchWeatherData } from '../services/weatherService';
-import { OPENWEATHER_API_URL } from '../services/API';
+import { OPENWEATHER_API_URL } from '../services/api';
 
 const CACHE_EXPIRATION_TIME = 900000;
 
