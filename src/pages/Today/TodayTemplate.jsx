@@ -60,7 +60,7 @@ const TodayTemplate = ({ weatherData }) => {
           icon={WindIcon}
         />
         <Detail
-          title={'Wind Degree'}
+          title={'Degree'}
           info={`${weatherData?.wind.deg}º`}
           icon={ArrowCircleIcon}
           rotate={weatherData?.wind.deg}
