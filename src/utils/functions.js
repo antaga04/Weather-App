@@ -5,22 +5,50 @@ export const utcToLocal = (timestamp) => {
   return `${localHour}:${localMinutes}`;
 };
 
+export const localDate = (timestamp) => {
+  const date = new Date(timestamp * 1000);
+  const day = date.getDate();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  return `${day}.${month}`;
+};
+
 export const celsiusAFahrenheit = (celsius) => {
   return (celsius * 9) / 5 + 32;
 };
 
-export const transformTemperature = (temp, unit) => {
+export const transformTemperature = (temp, unit, letter) => {
   if (unit === 'celsius') {
-    return `${Math.round(temp)} ºC`;
+    return `${Math.round(temp)}${letter ? ' ºC' : ''}`;
   } else {
     const fahrenheit = (temp * 9) / 5 + 32;
-    return `${Math.round(fahrenheit)} ºF`;
+    return `${Math.round(fahrenheit)}${letter ? ' ºF' : ''}`;
   }
 };
 
 export const getRandomCity = (defaultCities) => {
   const randomIndex = Math.floor(Math.random() * defaultCities.length);
   return defaultCities[randomIndex];
+};
+
+export const convertHourToData = (hour) => {
+  const { dt, main, weather, pop, visibility, wind, clouds, pressure } = hour;
+  const { temp, humidity } = main;
+  const { description, icon } = weather[0];
+  const { speed: windSpeed, deg: windDeg } = wind;
+
+  return {
+    dt,
+    description,
+    temp,
+    icon,
+    pop,
+    humidity,
+    visibility,
+    windSpeed,
+    windDeg,
+    clouds: clouds.all,
+    pressure,
+  };
 };
 
 export const setWeatherColor = (temperature, weatherDescription) => {
