@@ -6,7 +6,11 @@ import { FORECAST_API_URL } from '../../services/api';
 
 const Hours = () => {
   return (
-    <WeatherComponent apiOption={FORECAST_API_URL} Component={HoursTemplate} section="hours-section" />
+    <WeatherComponent
+      apiOption={FORECAST_API_URL}
+      Component={HoursTemplate}
+      section="hours-section"
+    />
   );
 };
 
