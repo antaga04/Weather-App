@@ -13,12 +13,6 @@
   display: flex;
 }
 
-.deleteBtn:hover,
-.dragBtn:hover,
-.addBtn:hover {
-  fill: var(--detail);
-}
-
 .deleteBtn svg {
   width: 1.75rem;
   height: 1.75rem;
@@ -68,8 +62,6 @@
   cursor: pointer;
 }
 
-.city-item .city:hover,
-.city-item .city:active,
 .city-item.selected .city {
   color: var(--detail) !important;
 }
@@ -113,6 +105,31 @@
 
 .window.menu-opened ul.city-list li.city-item:nth-child(9) {
   transition-delay: calc(0.7s - (1 * 0.07s));
+}
+
+@media (min-width: 768px) {
+
+  .deleteBtn:hover,
+  .dragBtn:hover,
+  .addBtn:hover {
+    fill: var(--detail);
+  }
+
+  .city-item .city:hover {
+    color: var(--detail) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .city-item .city:active {
+    color: var(--detail) !important;
+  }
+
+  .deleteBtn:active,
+  .dragBtn:active,
+  .addBtn:active {
+    fill: var(--detail);
+  }
 }
 
 @media (max-width: 1023px) {
