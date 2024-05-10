@@ -31,8 +31,8 @@ export const getRandomCity = (defaultCities) => {
 };
 
 export const convertHourToData = (hour) => {
-  const { dt, main, weather, pop, visibility, wind, clouds, pressure } = hour;
-  const { temp, humidity } = main;
+  const { dt, main, weather, pop, visibility, wind, clouds } = hour;
+  const { temp, humidity, pressure } = main;
   const { description, icon } = weather[0];
   const { speed: windSpeed, deg: windDeg } = wind;
 
