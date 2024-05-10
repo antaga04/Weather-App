@@ -9,7 +9,7 @@ import Accordion from '../../components/Accordion/Accordion';
 import AccordionItem from '../../components/Accordion/AccordionItem';
 import HourData from '../../components/HourData/HourData';
 import useWeatherColorSetter from '../../hooks/useWeatherColorSetter';
-import { daysOfWeek } from '../../utils/data';
+import { dayNames } from '../../utils/data';
 
 const getMostRepeatedData = (countObject) => {
   return Object.entries(countObject).reduce((a, b) => (a[1] > b[1] ? a : b))[0];
@@ -97,7 +97,7 @@ const DaysTemplate = ({ weatherData }) => {
   const getDayOfWeek = (dateString) => {
     const [day, month] = dateString.split('-').map(Number);
     const dayIndex = new Date(2024, month - 1, day).getDay();
-    return daysOfWeek[dayIndex];
+    return dayNames[dayIndex];
   };
 
   return (

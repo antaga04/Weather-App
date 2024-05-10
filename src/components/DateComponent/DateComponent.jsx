@@ -1,7 +1,7 @@
 import React from 'react';
 import './DateComponent.css';
 import Card from '../Card/Card';
-import { daysOfWeek } from '../../utils/data';
+import { dayNames } from '../../utils/data';
 
 const DateComponent = () => {
   const currentDate = new Date();
@@ -14,9 +14,9 @@ const DateComponent = () => {
     <Card>
       <div className="date">
         {window.innerWidth < 500 ? (
-          <p className="small-screen-date">{`${daysOfWeek[dayOfWeek]} ${day}.${month}`}</p>
+          <p className="small-screen-date">{`${dayNames[dayOfWeek]} ${day}.${month}`}</p>
         ) : (
-          <p className="">{`${dayOfWeek[dayOfWeek]} ${day}.${month}.${year}`}</p>
+          <p className="">{`${dayNames[dayOfWeek]} ${day}.${month}.${year}`}</p>
         )}
       </div>
     </Card>
