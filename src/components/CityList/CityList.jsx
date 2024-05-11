@@ -57,34 +57,42 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
   };
 
   return (
-    <ul className="city-list">
+    <div className="city-list">
       {newCity && (
-        <li
+        <div
           className={`city-item newCity ${
             selectedCity && selectedCity.label === newCity.label ? 'selected' : ''
           }`}
         >
-          <button className="city" onClick={() => handleCityClick(newCity)}>
+          <button id={newCity.label} className="city" onClick={() => handleCityClick(newCity)}>
             {newCity.label}
           </button>
-          <button className="addBtn" onClick={() => addCity(newCity)}>
+          <button
+            aria-label="Add to favourites"
+            className="addBtn"
+            onClick={() => addCity(newCity)}
+          >
             {HeartIcon()}
           </button>
-        </li>
+        </div>
       )}
-      <li
+      <div
         className={`city-item ${
           selectedCity && selectedCity.label === currentCity.label ? 'selected' : ''
         }`}
       >
-        <button className="city" onClick={() => handleCityClick(currentCity)}>
+        <button
+          aria-label="Select your location"
+          className="city"
+          onClick={() => handleCityClick(currentCity)}
+        >
           My Location
         </button>
-      </li>
+      </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
+            <ul ref={provided.innerRef} {...provided.droppableProps}>
               {items.map((item, index) => (
                 <Draggable key={item.label} draggableId={item.label} index={index}>
                   {(provided) => (
@@ -96,14 +104,22 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
                       }`}
                     >
                       <div {...provided.dragHandleProps}>
-                        <span className="dragBtn">
+                        <span aria-label="Dragg button" className="dragBtn">
                           <ListUl />
                         </span>
                       </div>
-                      <button className="city" onClick={() => handleCityClick(item)}>
+                      <button
+                        aria-label={`Select ${item.label}`}
+                        className="city"
+                        onClick={() => handleCityClick(item)}
+                      >
                         {item.label}
                       </button>
-                      <button className="deleteBtn" onClick={() => removeCity(index)}>
+                      <button
+                        aria-label="Delete from favourites"
+                        className="deleteBtn"
+                        onClick={() => removeCity(index)}
+                      >
                         {XIcon()}
                       </button>
                     </li>
@@ -111,11 +127,11 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
                 </Draggable>
               ))}
               {provided.placeholder}
-            </div>
+            </ul>
           )}
         </Droppable>
       </DragDropContext>
-    </ul>
+    </div>
   );
 };
 
