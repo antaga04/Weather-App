@@ -30,6 +30,12 @@ export const getRandomCity = (defaultCities) => {
   return defaultCities[randomIndex];
 };
 
+export const getDayOfWeek = (dateString, dayNames) => {
+  const [day, month] = dateString.split('-').map(Number);
+  const dayIndex = new Date(2024, month - 1, day).getDay();
+  return dayNames[dayIndex];
+};
+
 export const convertHourToData = (hour) => {
   const { dt, main, weather, pop, visibility, wind, clouds } = hour;
   const { temp, humidity, pressure } = main;
@@ -51,7 +57,7 @@ export const convertHourToData = (hour) => {
   };
 };
 
-export const setWeatherColor = (temperature, weatherDescription) => {
+export const setWeatherColor = (weatherDescription) => {
   let color;
 
   switch (weatherDescription) {
