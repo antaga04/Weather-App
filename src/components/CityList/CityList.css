@@ -13,6 +13,7 @@
   display: flex;
 }
 
+.dragBtn svg,
 .deleteBtn svg {
   width: 1.75rem;
   height: 1.75rem;
@@ -30,8 +31,8 @@
   position: relative;
   display: block;
   list-style: none;
-  padding: 0 1.75rem;
-  margin: .5rem 0 0;
+  padding: 0 1.25rem;
+  margin: .75rem 0 0;
 }
 
 .city-item {
@@ -51,9 +52,10 @@
   font-family: var(--mukta);
   font-weight: 100;
   text-decoration: none;
-  font-size: 22px;
-  line-height: 2.35;
+  font-size: 24px;
   font-weight: 200;
+  /* line-height: 2.35; */
+  min-height: 3.25rem;
   width: 100%;
   transition: color .25s ease-in-out;
   background: transparent;
@@ -121,6 +123,10 @@
 }
 
 @media (max-width: 767px) {
+  .city-list {
+    padding: 0 1.75rem;
+  }
+
   .city-item .city:active {
     color: var(--detail) !important;
   }
