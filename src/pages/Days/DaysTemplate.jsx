@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTemperatureUnit } from '../../contexts/TemperatureUnitContext';
 import { useCity } from '../../contexts/CityContext';
-import { convertHourToData, transformTemperature } from '../../utils/functions';
+import { convertHourToData, getDayOfWeek, transformTemperature } from '../../utils/functions';
 import { WeatherIcon } from '../../components/Icons/WeatherIcon';
 import { ChevronDown, PrecipitationIcon } from '../../components/Icons/Icons';
 import Card from '../../components/Card/Card';
@@ -74,11 +74,7 @@ const DaysTemplate = ({ weatherData }) => {
   const dailyForecastInHours = calculateDailyForecastInHours(weatherData);
   const dailyWeather = calculateDailyWeather(dailyForecastInHours);
 
-  useWeatherColorSetter(
-    weatherData,
-    weatherData.list[0].main.temp,
-    weatherData.list[0].weather[0].description
-  );
+  useWeatherColorSetter(weatherData, weatherData.list[0].weather[0].description);
 
   const handleDayOnCLick = (index) => {
     setSelectedDay(index);
@@ -94,12 +90,6 @@ const DaysTemplate = ({ weatherData }) => {
     }
   };
 
-  const getDayOfWeek = (dateString) => {
-    const [day, month] = dateString.split('-').map(Number);
-    const dayIndex = new Date(2024, month - 1, day).getDay();
-    return dayNames[dayIndex];
-  };
-
   return (
     <>
       <h1 className="fadeInAnimation">
@@ -107,7 +97,7 @@ const DaysTemplate = ({ weatherData }) => {
       </h1>
       <div className="wrapper">
         <ul className="animateChildren">
-          {dailyWeather.map((day, idx) => (
+          {dailyWeather.slice(1).map((day, idx) => (
             <li
               key={`${day.date}`}
               onClick={() => handleDayOnCLick(idx)}
@@ -116,7 +106,7 @@ const DaysTemplate = ({ weatherData }) => {
               <Card>
                 <div className="card">
                   <p className="day">
-                    {idx === 0 ? 'Tomorrow' : `${getDayOfWeek(day.date)} ${day.date}`}
+                    {idx === 0 ? 'Tomorrow' : `${getDayOfWeek(day.date, dayNames)} ${day.date}`}
                   </p>
                   <p className="description">{day.description}</p>
                   <div className="details">
