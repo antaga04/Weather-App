@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { setWeatherColor } from '../utils/functions';
 
-const useWeatherColorSetter = (weatherData, temp, description) => {
+const useWeatherColorSetter = (weatherData, description) => {
   useEffect(() => {
     if (weatherData) {
-      setWeatherColor(temp, description);
+      setWeatherColor(description);
     }
   }, [weatherData]);
 };
