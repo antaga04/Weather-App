@@ -18,7 +18,7 @@ const Footer = () => {
         </li>
       </ul>
       <p>
-        <a href="https://adrian-anta.netlify.app/" target='blank' className="portfolio">
+        <a href="https://adrian-anta.netlify.app/" target='blank' rel="noopener" className="portfolio">
           Built by Adrian Anta
         </a>
       </p>

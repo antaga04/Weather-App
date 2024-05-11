@@ -14,19 +14,6 @@ footer p {
   text-align: center;
 }
 
-footer .portfolio:hover {
-  animation: background-pan 3s linear infinite;
-  background: linear-gradient(to right,
-      var(--detail),
-      var(--detail2),
-      var(--detail3),
-      var(--detail));
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: nowrap;
-}
-
 footer .icons {
   justify-content: center;
   width: 100%;
@@ -40,16 +27,50 @@ footer .icons>li>a {
   transition: transform .25s ease-in-out, fill .3s ease-in-out;
 }
 
-footer .icons>li>a:hover {
-  fill: var(--white);
-  transform: scale(1.25);
+
+@media (min-width: 768px) {
+  footer .icons>li>a:hover {
+    fill: var(--detail2);
+    transform: scale(1.25);
+  }
+
+  footer .portfolio:hover {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(to right,
+        var(--detail),
+        var(--detail2),
+        var(--detail3),
+        var(--detail));
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   footer .icons {
     justify-content: space-evenly;
     width: 100%;
     gap: 0;
+  }
+
+  footer .icons>li>a:active {
+    fill: var(--detail3);
+    transform: scale(1.25);
+  }
+
+  footer .portfolio {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(to right,
+        var(--detail),
+        var(--detail2),
+        var(--detail3),
+        var(--detail));
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
   }
 }
 
