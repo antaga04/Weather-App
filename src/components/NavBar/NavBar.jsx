@@ -10,13 +10,13 @@ const NavBar = () => {
     <nav className="navBar">
       <ul className="navList">
         <li>
-          <NavLink to={`/`}>Today</NavLink>
+          <NavLink to={`/`} aria-label="Link to Today page">Today</NavLink>
         </li>
         <li>
-          <NavLink to={`/hours`}>Hours</NavLink>
+          <NavLink to={`/hours`} aria-label="Link to Hours page">Hours</NavLink>
         </li>
         <li>
-          <NavLink to={`/days`}>Days</NavLink>
+          <NavLink to={`/days`} aria-label="Link to Days page">Days</NavLink>
         </li>
       </ul>
     </nav>
