@@ -19,6 +19,7 @@ const ToggleButton = () => {
   return (
     <>
       <button
+        aria-label="Temperature switch"
         className={`${unit} temp-btn`}
         onClick={isButtonDisabled ? null : handleUnitChange}
         disabled={isButtonDisabled}
