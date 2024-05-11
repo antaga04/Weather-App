@@ -20,7 +20,7 @@ const TodayTemplate = ({ weatherData }) => {
   const { unit } = useTemperatureUnit();
   const { selectedCity } = useCity();
 
-  useWeatherColorSetter(weatherData, weatherData?.main.temp, weatherData.weather[0].description);
+  useWeatherColorSetter(weatherData, weatherData.weather[0].description);
 
   const data = {
 

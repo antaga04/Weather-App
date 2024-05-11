@@ -9,15 +9,13 @@ import useWeatherColorSetter from '../../hooks/useWeatherColorSetter';
 const HoursTemplate = ({ weatherData }) => {
   const { selectedCity } = useCity();
 
-  useWeatherColorSetter(
-    weatherData,
-    weatherData.list[0].main.temp,
-    weatherData.list[0].weather[0].description
-  );
+  useWeatherColorSetter(weatherData, weatherData.list[0].weather[0].description);
 
   return (
     <>
-      <h1 className='fadeInAnimation'>{selectedCity.label === 'My Location' ? weatherData.city.name : selectedCity.label}</h1>
+      <h1 className="fadeInAnimation">
+        {selectedCity.label === 'My Location' ? weatherData.city.name : selectedCity.label}
+      </h1>
       <Accordion>
         {weatherData.list.slice(0, 8).map((hour, idx) => (
           <AccordionItem key={idx}>
