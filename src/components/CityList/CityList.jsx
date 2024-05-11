@@ -104,9 +104,9 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
                       }`}
                     >
                       <div {...provided.dragHandleProps}>
-                        <span aria-label="Dragg button" className="dragBtn">
+                        <button aria-label="Dragg button" className="dragBtn">
                           <ListUl />
-                        </span>
+                        </button>
                       </div>
                       <button
                         aria-label={`Select ${item.label}`}
