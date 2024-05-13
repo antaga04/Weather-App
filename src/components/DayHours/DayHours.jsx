@@ -18,8 +18,6 @@ const DayHours = ({ selectedDay, setSelectedDay, dailyForecastInHours }) => {
     }
   };
 
-  console.log('\nrender DAYHOURS');
-
   return (
     <div
       className={`day-hours-container ${selectedDay !== null && 'active'} ${
@@ -38,7 +36,7 @@ const DayHours = ({ selectedDay, setSelectedDay, dailyForecastInHours }) => {
             </div>
           </div>
           <Accordion>
-            {dailyForecastInHours[selectedDay][1].map((hour, idx) => (
+            {dailyForecastInHours.slice(1)[selectedDay][1].map((hour, idx) => (
               <AccordionItem key={`day-${dailyForecastInHours[selectedDay][0]}-hour-${idx}`}>
                 <HourData data={convertHourToData(hour)} />
               </AccordionItem>

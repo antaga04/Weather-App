@@ -51,8 +51,6 @@ const DailyWeather = ({ handleDayOnCLick, dailyForecastInHours }) => {
 
   const dailyWeather = calculateDailyWeather(dailyForecastInHours);
 
-  console.log('\nrender DAILYWEATHER');
-
   return (
     <ul className="animateChildren">
       {dailyWeather.slice(1).map((day, idx) => (

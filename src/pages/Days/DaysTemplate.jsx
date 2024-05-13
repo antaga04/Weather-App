@@ -30,8 +30,6 @@ const DaysTemplate = ({ weatherData }) => {
     setSelectedDay(index);
   };
 
-  console.log('\nrender - DAYS TEMPLATE');
-
   return (
     <>
       <h1 className="fadeInAnimation">

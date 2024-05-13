@@ -29,8 +29,6 @@ const BurgerMenu = () => {
     setIsMenuOpened(false);
   };
 
-  console.log('render BURGER MENU');
-
   return (
     <>
       <BurgerButton isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />

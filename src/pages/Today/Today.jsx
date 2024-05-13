@@ -5,8 +5,6 @@ import TodayTemplate from './TodayTemplate';
 import { WEATHER_API_URL } from '../../services/api';
 
 const Today = () => {
-  console.log('\nrender - TODAY PAGE');
-
   return (
     <WeatherComponent
       apiOption={WEATHER_API_URL}

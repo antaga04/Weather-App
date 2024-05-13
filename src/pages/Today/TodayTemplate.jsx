@@ -18,8 +18,6 @@ import TodayInfo from '../../components/TodayInfo/TodayInfo';
 const TodayTemplate = ({ weatherData }) => {
   useWeatherColorSetter(weatherData, weatherData.weather[0].description);
 
-  console.log('\nrender - TODAY TEMPLATE PAGE');
-
   return (
     <>
       <div className="overview">

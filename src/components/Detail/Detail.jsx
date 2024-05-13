@@ -3,8 +3,6 @@ import './Detail.css';
 import Card from '../Card/Card';
 
 const Detail = ({ title, info, icon, rotate }) => {
-  console.log('render DETAIL');
-
   return (
     <Card boxShadow="boxShadow">
       <div className="window-content">

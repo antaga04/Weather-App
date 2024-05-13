@@ -5,8 +5,6 @@ import HoursTemplate from './HoursTemplate';
 import { FORECAST_API_URL } from '../../services/api';
 
 const Hours = () => {
-  console.log('\nrender - HOURS PAGE');
-
   return (
     <WeatherComponent
       apiOption={FORECAST_API_URL}

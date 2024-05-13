@@ -16,7 +16,6 @@ const ToggleButton = () => {
     }, 560);
   };
 
-  console.log('render TOGGLE BUTTON');
   return (
     <>
       <button
