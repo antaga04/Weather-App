@@ -7,8 +7,6 @@ const TodayInfo = ({ weatherData }) => {
   const { unit } = useTemperatureUnit();
   const { selectedCity } = useCity();
 
-  console.log('\nrender TODAY INFO');
-
   return (
     <div className="info animation">
       <h1>{selectedCity.label === 'My Location' ? weatherData.name : selectedCity.label}</h1>

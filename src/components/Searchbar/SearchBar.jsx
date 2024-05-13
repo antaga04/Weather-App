@@ -29,7 +29,6 @@ const SearchBar = ({ onSearchChange }) => {
     setSearch(searchData);
     onSearchChange(searchData);
   };
-  console.log('render SEARCH BAR');
   return (
     <>
       <AsyncPaginate

@@ -1,5 +1,5 @@
 export const fetchWeatherData = async (city, url, option) => {
-  console.log(`-- FETCH ${option} --`);
+  // console.log(`-- FETCH ${option} --`);
   const [lat, lon] = city.value.split(' ');
   const newURL = `${url}/${option}?lat=${lat}&lon=${lon}&appid=${
     import.meta.env.VITE_PUBLIC_WEATHER_API_KEY
@@ -13,7 +13,7 @@ export const fetchWeatherData = async (city, url, option) => {
     const data = await response.json();
     return { city: city.label, ...data, timestamp: Date.now() };
   } catch (error) {
-    console.log(error);
+    console.warn(error);
     throw error;
   }
 };

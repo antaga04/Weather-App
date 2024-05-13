@@ -6,7 +6,6 @@ import DateComponent from '../DateComponent/DateComponent';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const Header = () => {
-  console.log('render HEADER');
   return (
     <header>
       <DateComponent />

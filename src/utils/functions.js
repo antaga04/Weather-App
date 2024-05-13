@@ -7,11 +7,18 @@ export const utcToLocal = (timestamp, timeZoneOffset) => {
   return `${localHour}:${localMinutes}`;
 };
 
-export const localDate = (timestamp) => {
-  const date = new Date(timestamp * 1000);
+export const localDate = (date) => {
   const day = date.getDate();
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  return `${day}.${month}`;
+  const year = date.getFullYear();
+  const dayOfWeek = date.getDay();
+
+  return {
+    day,
+    month,
+    year,
+    dayOfWeek,
+  };
 };
 
 export const celsiusAFahrenheit = (celsius) => {

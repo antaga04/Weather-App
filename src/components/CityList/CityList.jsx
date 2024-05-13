@@ -2,96 +2,58 @@ import React, { useEffect, useState } from 'react';
 import './CityList.css';
 import { XIcon, HeartIcon, ListUl } from '../Icons/Icons';
 import { useCity } from '../../contexts/CityContext';
-import { defaultCities } from '../../services/weatherService';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { asciiArt } from '../../utils/data';
+import {
+  loadCitiesFromLocalStorage,
+  getLocation,
+  saveCitiesToLocalStorage,
+} from '../../utils/cityUtils';
+import { getRandomCity } from '../../utils/functions';
+import { defaultCities } from '../../services/weatherService';
 
 const CityList = ({ newCity, setNewCity, closeMenu }) => {
   const { currentCity, selectedCity, updateSelectedCity, updateCurrentCity } = useCity();
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const storedItems = localStorage.getItem('w-cities');
-    if (storedItems) {
-      setItems(JSON.parse(storedItems));
-    } else {
-      setItems(defaultCities);
-      localStorage.setItem('w-cities', JSON.stringify(defaultCities));
-    }
-
-    const options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 };
-
-    function success(pos) {
-      const crd = pos.coords;
-      // console.log(pos);
-      const location = {
-        label: 'My Location',
-        value: `${crd.latitude} ${crd.longitude}`,
-      };
-      updateCurrentCity(location);
-      updateSelectedCity(location);
-      // console.log('Current position:');
-    }
-
-    function errors(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    if (navigator.geolocation) {
-      navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
-        if (result.state === 'granted') {
-          console.log('granted');
-          navigator.geolocation.getCurrentPosition(success, errors, options);
-        } else if (result.state === 'prompt') {
-          console.log('prompt');
-          updateSelectedCity(getRandomCity(defaultCities));
-          navigator.geolocation.getCurrentPosition(success, errors, options);
-        } else if (result.state === 'denied') {
-          updateSelectedCity(getRandomCity(defaultCities));
-          console.log('denied');
-        }
-      });
-    } else {
-      updateSelectedCity(getRandomCity(defaultCities));
-      console.log('Geolocation is not supported by this browser.');
-    }
-
-    console.log(`
-  Art by Joan Stark
-  
-                 .##@@&&&@@##.
-              ,##@&::%&&%%::&@##.
-             #@&:%%000000000%%:&@#
-           #@&:%00'         '00%:&@#
-          #@&:%0'             '0%:&@#
-         #@&:%0                 0%:&@#
-        #@&:%0                   0%:&@#
-        #@&:%0                   0%:&@#
-        "" ' "                   " ' ""
-      _oOoOoOo_                   .-.-.
-     (oOoOoOoOo)                 (  :  )
-      )'"""""'(                .-.'. .'.-.
-     /         \              (_  '.Y.'  _)
-    | #         |             (   .'|'.   )
-    \           /              '-'  |  '-'
-     '========='
-  `);
+    loadCities();
+    fetchLocation();
+    console.log(asciiArt);
   }, []);
 
+  const loadCities = () => {
+    const cities = loadCitiesFromLocalStorage();
+    setItems(cities);
+  };
+
+  const fetchLocation = () => {
+    getLocation()
+      .then((location) => {
+        updateCurrentCity(location);
+        updateSelectedCity(location);
+      })
+      .catch((error) => {
+        console.warn('Error fetching location:', error);
+        updateSelectedCity(getRandomCity(defaultCities));
+        // alert(error.message);
+      });
+  };
+
   const removeCity = (index) => {
-    const nuevosItems = [...items];
-    nuevosItems.splice(index, 1);
-    setItems(nuevosItems);
-    localStorage.setItem('w-cities', JSON.stringify(nuevosItems));
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+    saveCitiesToLocalStorage(newItems);
   };
 
   const addCity = (city) => {
     if (!items.some((item) => item.label === city.label)) {
-      const nuevosItems = [...items, city];
-      setItems(nuevosItems);
-      localStorage.setItem('w-cities', JSON.stringify(nuevosItems));
+      const newItems = [...items, city];
+      setItems(newItems);
+      saveCitiesToLocalStorage(newItems);
       setNewCity('');
     } else {
-      console.log(`La ciudad "${city.label}" ya está en la lista.`);
       alert(`La ciudad "${city.label}" ya está en la lista.`);
     }
   };
@@ -111,10 +73,8 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
     const [reorderedItem] = newItems.splice(result.source.index, 1);
     newItems.splice(result.destination.index, 0, reorderedItem);
     setItems(newItems);
-    localStorage.setItem('w-cities', JSON.stringify(newItems));
+    saveCitiesToLocalStorage(newItems);
   };
-
-  console.log('render CITY LIST');
 
   return (
     <div className="city-list">
@@ -180,7 +140,7 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
                         className="deleteBtn"
                         onClick={() => removeCity(index)}
                       >
-                        {XIcon()}
+                        <XIcon />
                       </button>
                     </li>
                   )}
