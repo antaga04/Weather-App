@@ -31,7 +31,7 @@ const calculateDailyForecastInHours = (weatherData) => {
 
 const calculateDailyWeather = (dailyForecastInHours) => {
   return dailyForecastInHours.map(([date, hours]) => {
-    const tempData = {
+    const data = {
       maxTemp: -Infinity,
       minTemp: Infinity,
       iconCounts: {},
@@ -40,26 +40,26 @@ const calculateDailyWeather = (dailyForecastInHours) => {
     };
 
     hours.forEach((hour) => {
-      tempData.maxTemp = Math.max(tempData.maxTemp, hour.main.temp_max);
-      tempData.minTemp = Math.min(tempData.minTemp, hour.main.temp_min);
-      tempData.maxPop = Math.max(tempData.maxPop, hour.pop);
+      data.maxTemp = Math.max(data.maxTemp, hour.main.temp_max);
+      data.minTemp = Math.min(data.minTemp, hour.main.temp_min);
+      data.maxPop = Math.max(data.maxPop, hour.pop);
 
       const icon = hour.weather[0].icon;
       const description = hour.weather[0].description;
-      tempData.iconCounts[icon] = (tempData.iconCounts[icon] || 0) + 1;
-      tempData.descriptionCounts[description] = (tempData.descriptionCounts[description] || 0) + 1;
+      data.iconCounts[icon] = (data.iconCounts[icon] || 0) + 1;
+      data.descriptionCounts[description] = (data.descriptionCounts[description] || 0) + 1;
     });
 
-    tempData.icon = getMostRepeatedData(tempData.iconCounts);
-    tempData.description = getMostRepeatedData(tempData.descriptionCounts);
+    data.icon = getMostRepeatedData(data.iconCounts);
+    data.description = getMostRepeatedData(data.descriptionCounts);
 
     return {
       date,
-      maxTemp: tempData.maxTemp,
-      minTemp: tempData.minTemp,
-      icon: tempData.icon,
-      description: tempData.description,
-      maxPop: tempData.maxPop,
+      maxTemp: data.maxTemp,
+      minTemp: data.minTemp,
+      icon: data.icon,
+      description: data.description,
+      maxPop: data.maxPop,
     };
   });
 };
@@ -142,9 +142,9 @@ const DaysTemplate = ({ weatherData }) => {
                 </div>
               </div>
               <Accordion>
-                {dailyForecastInHours[selectedDay][1].map((hour, idx) => (
+                {dailyForecastInHours.slice(1)[selectedDay][1].map((hour, idx) => (
                   <AccordionItem key={`day-${dailyForecastInHours[selectedDay][0]}-hour-${idx}`}>
-                    <HourData data={convertHourToData(hour)} />
+                    <HourData data={convertHourToData(hour, 0)} />
                   </AccordionItem>
                 ))}
               </Accordion>
