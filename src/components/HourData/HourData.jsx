@@ -15,7 +15,7 @@ import { WeatherIcon } from '../Icons/WeatherIcon';
 
 const HourData = ({ data }) => {
   const { unit } = useTemperatureUnit();
-
+  console.log('render HOUR DATA');
   return (
     <>
       <div id="details">

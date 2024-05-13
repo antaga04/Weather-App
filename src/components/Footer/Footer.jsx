@@ -3,6 +3,8 @@ import './Footer.css';
 import { GithubIcon, LinkedinIcon } from '../Icons/Icons';
 
 const Footer = () => {
+  console.log('render FOOTER');
+
   return (
     <footer>
       <ul className="icons flex-center">

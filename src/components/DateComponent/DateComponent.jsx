@@ -10,6 +10,9 @@ const DateComponent = () => {
   const year = currentDate.getFullYear();
   const dayOfWeek = currentDate.getDay();
 
+  console.log('render DATE COMPONENT');
+
+
   return (
     <Card>
       <div className="date">

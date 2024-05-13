@@ -27,8 +27,9 @@ const WeatherComponent = ({ apiOption, Component, section }) => {
     if (selectedCity) {
       loadData();
     }
-  }, [selectedCity, apiOption, section]);
+  }, [selectedCity, section]);
 
+  console.log('render WEATHER COMPONENT');
   return (
     <main className={section}>
       {loading ? (

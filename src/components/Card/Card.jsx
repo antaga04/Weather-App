@@ -2,6 +2,8 @@ import React from 'react';
 import './Card.css';
 
 const Card = ({children, boxShadow}) => {
+  console.log('render CARD');
+
   return (
     <div className="container-card">
       <div className="glare-item-top outer-edge"></div>

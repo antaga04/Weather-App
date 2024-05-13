@@ -5,6 +5,7 @@ import DaysTemplate from './DaysTemplate';
 import { FORECAST_API_URL } from '../../services/api';
 
 const Days = () => {
+  console.log('\nrender - DAYS PAGE');
   return (
     <WeatherComponent
       apiOption={FORECAST_API_URL}

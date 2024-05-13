@@ -48,6 +48,6 @@ export function WeatherIcon({ code, css }) {
         return <Unknown />;
     }
   };
-
+  console.log('render WEATHER ICON');
   return <div className={css}>{getIcon(code)}</div>;
 }
