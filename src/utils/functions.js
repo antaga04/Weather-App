@@ -1,7 +1,9 @@
-export const utcToLocal = (timestamp) => {
+export const utcToLocal = (timestamp, timeZoneOffset) => {
   const date = new Date(timestamp * 1000);
-  const localHour = date.getHours();
-  const localMinutes = date.getMinutes().toString().padStart(2, '0');
+  const utcOffset = date.getTimezoneOffset() * 60;
+  const localTime = new Date((timestamp + utcOffset + timeZoneOffset) * 1000);
+  const localHour = localTime.getHours();
+  const localMinutes = localTime.getMinutes().toString().padStart(2, '0');
   return `${localHour}:${localMinutes}`;
 };
 
@@ -36,13 +38,14 @@ export const getDayOfWeek = (dateString, dayNames) => {
   return dayNames[dayIndex];
 };
 
-export const convertHourToData = (hour) => {
+export const convertHourToData = (hour, timezone) => {
   const { dt, main, weather, pop, visibility, wind, clouds } = hour;
   const { temp, humidity, pressure } = main;
   const { description, icon } = weather[0];
   const { speed: windSpeed, deg: windDeg } = wind;
 
   return {
+    timezone,
     dt,
     description,
     temp,

@@ -21,7 +21,7 @@ const HoursTemplate = ({ weatherData }) => {
       <Accordion>
         {weatherData.list.slice(0, 8).map((hour, idx) => (
           <AccordionItem key={idx}>
-            <HourData data={convertHourToData(hour)} />
+            <HourData data={convertHourToData(hour, weatherData.city.timezone)} />
           </AccordionItem>
         ))}
       </Accordion>

@@ -27,8 +27,8 @@ const TodayTemplate = ({ weatherData }) => {
         <WeatherIcon code={weatherData.weather[0].icon} css="icon fadeInAnimation" />
       </div>
       <div className="today-details animation">
-        <Detail title={'Sunrise'} info={utcToLocal(weatherData?.sys.sunrise)} icon={SunriseIcon} />
-        <Detail title={'Sunset'} info={utcToLocal(weatherData?.sys.sunset)} icon={Sunset} />
+        <Detail title={'Sunrise'} info={utcToLocal(weatherData?.sys.sunrise, weatherData?.timezone)} icon={SunriseIcon} />
+        <Detail title={'Sunset'} info={utcToLocal(weatherData?.sys.sunset, weatherData?.timezone)} icon={Sunset} />
         <Detail title={'Humidity'} info={`${weatherData?.main.humidity}%`} icon={HumidityIcon} />
         <Detail
           title={'Visibility'}

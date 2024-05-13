@@ -20,7 +20,7 @@ const HourData = ({ data }) => {
     <>
       <div id="details">
         <div className="hour-details">
-          <p className="time">{utcToLocal(data.dt)}</p>
+          <p className="time">{utcToLocal(data.dt, 0)}</p>
           <p className="description">{data.description}</p>
         </div>
         <div className="hour-info">
