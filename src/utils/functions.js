@@ -1,9 +1,12 @@
-export const utcToLocal = (timestamp) => {
+export const utcToLocal = (timestamp, timeZoneOffset) => {
   const date = new Date(timestamp * 1000);
-  const localHour = date.getHours();
-  const localMinutes = date.getMinutes().toString().padStart(2, '0');
+  const utcOffset = date.getTimezoneOffset() * 60; // Offset en segundos
+  const localTime = new Date((timestamp + utcOffset + timeZoneOffset) * 1000);
+  const localHour = localTime.getHours();
+  const localMinutes = localTime.getMinutes().toString().padStart(2, '0');
   return `${localHour}:${localMinutes}`;
 };
+
 
 export const localDate = (timestamp) => {
   const date = new Date(timestamp * 1000);
