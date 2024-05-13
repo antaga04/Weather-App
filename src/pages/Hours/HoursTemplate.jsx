@@ -11,6 +11,8 @@ const HoursTemplate = ({ weatherData }) => {
 
   useWeatherColorSetter(weatherData, weatherData.list[0].weather[0].description);
 
+  console.log('\nrender - HOURS TEMPLATE PAGE');
+
   return (
     <>
       <h1 className="fadeInAnimation">

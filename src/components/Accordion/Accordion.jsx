@@ -8,6 +8,7 @@ const Accordion = ({ children }) => {
     setOpenIndex(index === openIndex ? null : index);
   };
 
+  console.log('render ACCORDION');
   return (
     <ul className="accordion-wrapper">
       {React.Children.map(children, (child, index) =>

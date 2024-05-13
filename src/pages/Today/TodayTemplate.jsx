@@ -10,39 +10,20 @@ import {
   WindIcon,
 } from '../../components/Icons/Icons';
 import Detail from '../../components/Detail/Detail';
-import { transformTemperature, utcToLocal } from '../../utils/functions';
-import { useTemperatureUnit } from '../../contexts/TemperatureUnitContext';
+import { utcToLocal } from '../../utils/functions';
 import { WeatherIcon } from '../../components/Icons/WeatherIcon';
-import { useCity } from '../../contexts/CityContext';
 import useWeatherColorSetter from '../../hooks/useWeatherColorSetter';
+import TodayInfo from '../../components/TodayInfo/TodayInfo';
 
 const TodayTemplate = ({ weatherData }) => {
-  const { unit } = useTemperatureUnit();
-  const { selectedCity } = useCity();
-
   useWeatherColorSetter(weatherData, weatherData.weather[0].description);
 
-  const data = {
-
-  }
+  console.log('\nrender - TODAY TEMPLATE PAGE');
 
   return (
     <>
       <div className="overview">
-        <div className="info animation">
-          <h1>{selectedCity.label === 'My Location' ? weatherData.name : selectedCity.label}</h1>
-          <h2>{weatherData.weather[0].description}</h2>
-          <div className="info-temp">
-            <p id="temp">{transformTemperature(weatherData.main.temp, unit, true)}</p>
-            <p id="feeling">/Feels like</p>
-            <p id="feeling-temp">{transformTemperature(weatherData.main.feels_like, unit, true)}</p>
-          </div>
-          <div className="info-max-min">
-            <p>↑ {transformTemperature(weatherData.main.temp_max, unit, true)}</p>
-            <span className="temp-divider">~</span>
-            <p>↓ {transformTemperature(weatherData.main.temp_min, unit, true)}</p>
-          </div>
-        </div>
+        <TodayInfo weatherData={weatherData} />
         <WeatherIcon code={weatherData.weather[0].icon} css="icon fadeInAnimation" />
       </div>
       <div className="today-details animation">

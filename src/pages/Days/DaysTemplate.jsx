@@ -90,6 +90,8 @@ const DaysTemplate = ({ weatherData }) => {
     }
   };
 
+  console.log('\nrender - DAYS TEMPLATE');
+
   return (
     <>
       <h1 className="fadeInAnimation">

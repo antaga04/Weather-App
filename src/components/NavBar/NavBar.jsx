@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useCity } from '../../contexts/CityContext';
 
 const NavBar = () => {
-  // const { selectedCity } = useCity();
-
+  console.log('render NAV BAR');
   return (
     <nav className="navBar">
       <ul className="navList">

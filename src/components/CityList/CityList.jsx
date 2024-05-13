@@ -6,7 +6,7 @@ import { defaultCities } from '../../services/weatherService';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const CityList = ({ newCity, setNewCity, closeMenu }) => {
-  const { currentCity, selectedCity, updateSelectedCity } = useCity();
+  const { currentCity, selectedCity, updateSelectedCity, updateCurrentCity } = useCity();
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,64 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
       setItems(defaultCities);
       localStorage.setItem('w-cities', JSON.stringify(defaultCities));
     }
+
+    const options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 };
+
+    function success(pos) {
+      const crd = pos.coords;
+      // console.log(pos);
+      const location = {
+        label: 'My Location',
+        value: `${crd.latitude} ${crd.longitude}`,
+      };
+      updateCurrentCity(location);
+      updateSelectedCity(location);
+      // console.log('Current position:');
+    }
+
+    function errors(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    if (navigator.geolocation) {
+      navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
+        if (result.state === 'granted') {
+          console.log('granted');
+          navigator.geolocation.getCurrentPosition(success, errors, options);
+        } else if (result.state === 'prompt') {
+          console.log('prompt');
+          updateSelectedCity(getRandomCity(defaultCities));
+          navigator.geolocation.getCurrentPosition(success, errors, options);
+        } else if (result.state === 'denied') {
+          updateSelectedCity(getRandomCity(defaultCities));
+          console.log('denied');
+        }
+      });
+    } else {
+      updateSelectedCity(getRandomCity(defaultCities));
+      console.log('Geolocation is not supported by this browser.');
+    }
+
+    console.log(`
+  Art by Joan Stark
+  
+                 .##@@&&&@@##.
+              ,##@&::%&&%%::&@##.
+             #@&:%%000000000%%:&@#
+           #@&:%00'         '00%:&@#
+          #@&:%0'             '0%:&@#
+         #@&:%0                 0%:&@#
+        #@&:%0                   0%:&@#
+        #@&:%0                   0%:&@#
+        "" ' "                   " ' ""
+      _oOoOoOo_                   .-.-.
+     (oOoOoOoOo)                 (  :  )
+      )'"""""'(                .-.'. .'.-.
+     /         \              (_  '.Y.'  _)
+    | #         |             (   .'|'.   )
+    \           /              '-'  |  '-'
+     '========='
+  `);
   }, []);
 
   const removeCity = (index) => {
@@ -55,6 +113,8 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
     setItems(newItems);
     localStorage.setItem('w-cities', JSON.stringify(newItems));
   };
+
+  console.log('render CITY LIST');
 
   return (
     <div className="city-list">

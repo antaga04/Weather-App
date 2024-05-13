@@ -4,6 +4,7 @@ import Card from '../../components/Card/Card';
 import { CloudLightiningIcon } from '../../components/Icons/Icons';
 
 const NotFound = () => {
+  console.log('\nrender - NOTFOUND PAGE');
   return (
     <main id="notfound" className="flex-center">
       <Card boxShadow={'boxShadow'}>
