@@ -1,4 +1,5 @@
-import { defaultCities } from '../services/weatherService';
+import { geoApiOptions } from '../services/api';
+import { defaultCities, fetchCityName } from '../services/weatherService';
 
 export const loadCitiesFromLocalStorage = () => {
   const storedItems = localStorage.getItem('w-cities');
@@ -13,9 +14,16 @@ export const getLocation = () => {
   return new Promise((resolve, reject) => {
     const options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 };
 
-    function success(pos) {
+    async function success(pos) {
       const crd = pos.coords;
-      resolve({ label: 'My Location', value: `${crd.latitude} ${crd.longitude}` });
+      // console.log(crd);
+      
+      try {
+        const currentCityName = await fetchCityName(crd, geoApiOptions);
+        resolve({ label: currentCityName, value: `${crd.latitude} ${crd.longitude}` });
+      } catch (error) {
+        reject(error);
+      }
     }
 
     function errors(err) {
@@ -35,3 +43,4 @@ export const getLocation = () => {
     }
   });
 };
+
