@@ -108,6 +108,13 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
         >
           My Location
         </button>
+        <button
+          aria-label="Add to favourites"
+          className="addBtn"
+          onClick={() => addCity(selectedCity)}
+        >
+          {HeartIcon()}
+        </button>
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
