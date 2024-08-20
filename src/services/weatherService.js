@@ -28,3 +28,28 @@ export const defaultCities = [
   { value: '37.986111111 -1.130277777', label: 'Murcia, ES' },
   { value: '40.833333333 14.25', label: 'Naples, IT' },
 ];
+
+export const fetchCityName = async (crd, geoApiOptions) => {
+  try {
+    const { latitude, longitude } = crd;
+
+    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${latitude}${longitude}/nearbyCities?radius=100`;
+    const response = await fetch(url, geoApiOptions);
+
+    if (!response.ok) {
+      throw new Error(`Error fetching city name: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    if (data && data.data && data.data.length > 0) {
+      const city = data.data[0].city;
+      return city;
+    } else {
+      throw new Error('No nearby cities found');
+    }
+  } catch (error) {
+    console.error(`Error fetching city name: ${error.message}`);
+    return 'My Location';
+  }
+};
