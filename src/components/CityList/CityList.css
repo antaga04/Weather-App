@@ -1,10 +1,5 @@
-.dragBtn {
-  margin-right: .5rem;
-}
-
 .deleteBtn,
-.addBtn,
-.dragBtn {
+.addBtn {
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -13,7 +8,6 @@
   display: flex;
 }
 
-.dragBtn svg,
 .deleteBtn svg {
   width: 1.75rem;
   height: 1.75rem;
@@ -68,6 +62,17 @@
   color: var(--detail) !important;
 }
 
+/* The whole row is the drag handle now, so there is no drag icon. */
+.city-list li.city-item {
+  cursor: grab;
+}
+
+.city-list li.city-item.dragging {
+  cursor: grabbing;
+  border-bottom-color: var(--detail);
+  transition: none;
+}
+
 .window.menu-opened .city-item {
   transform: scale(1) translateY(0px);
   opacity: 1;
@@ -112,7 +117,6 @@
 @media (min-width: 768px) {
 
   .deleteBtn:hover,
-  .dragBtn:hover,
   .addBtn:hover {
     fill: var(--detail);
   }
@@ -132,7 +136,6 @@
   }
 
   .deleteBtn:active,
-  .dragBtn:active,
   .addBtn:active {
     fill: var(--detail);
   }

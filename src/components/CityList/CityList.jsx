@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './CityList.css';
-import { XIcon, HeartIcon, ListUl } from '../Icons/Icons';
+import { XIcon, HeartIcon } from '../Icons/Icons';
 import { useCity } from '../../contexts/CityContext';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { asciiArt } from '../../utils/data';
 import {
   loadCitiesFromLocalStorage,
@@ -128,21 +128,29 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
         <Droppable droppableId="droppable">
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
+              {/*
+                The whole row is the drag handle, and the buttons inside cover every
+                pixel of it. dnd refuses to start a drag from inside an interactive
+                element, so without disableInteractiveElementBlocking no press
+                anywhere on the row would ever lift it.
+              */}
               {items.map((item, index) => (
-                <Draggable key={item.label} draggableId={item.label} index={index}>
-                  {(provided) => (
+                <Draggable
+                  key={item.label}
+                  draggableId={item.label}
+                  index={index}
+                  disableInteractiveElementBlocking
+                >
+                  {(provided, snapshot) => (
                     <li
                       ref={provided.innerRef}
                       {...provided.draggableProps}
-                      className={`city-item ${
+                      {...provided.dragHandleProps}
+                      aria-label={`Reorder ${item.label}`}
+                      className={`city-item ${snapshot.isDragging ? 'dragging' : ''} ${
                         selectedCity && selectedCity.label === item.label ? 'selected' : ''
                       }`}
                     >
-                      <div {...provided.dragHandleProps}>
-                        <button aria-label="Dragg button" className="dragBtn">
-                          <ListUl />
-                        </button>
-                      </div>
                       <button
                         aria-label={`Select ${item.label}`}
                         className="city"
