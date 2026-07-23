@@ -15,12 +15,20 @@ import { defaultCities } from '../../services/weatherService';
 const CityList = ({ newCity, setNewCity, closeMenu }) => {
   const { currentCity, selectedCity, updateSelectedCity, updateCurrentCity } = useCity();
   const [items, setItems] = useState([]);
+  const [fallbackCity, setFallbackCity] = useState(null);
 
   useEffect(() => {
     loadCities();
     fetchLocation();
     console.log(asciiArt);
   }, []);
+
+  // A city in the URL (shared link, reload or back navigation) wins over geolocation.
+  useEffect(() => {
+    if (fallbackCity && !selectedCity) {
+      updateSelectedCity(fallbackCity, { replace: true });
+    }
+  }, [fallbackCity, selectedCity, updateSelectedCity]);
 
   const loadCities = () => {
     const cities = loadCitiesFromLocalStorage();
@@ -31,11 +39,11 @@ const CityList = ({ newCity, setNewCity, closeMenu }) => {
     getLocation()
       .then((location) => {
         updateCurrentCity(location);
-        updateSelectedCity(location);
+        setFallbackCity(location);
       })
       .catch((error) => {
         console.warn('Error fetching location:', error);
-        updateSelectedCity(getRandomCity(defaultCities));
+        setFallbackCity(getRandomCity(defaultCities));
         // alert(error.message);
       });
   };

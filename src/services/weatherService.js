@@ -19,14 +19,16 @@ export const fetchWeatherData = async (city, url, option) => {
 };
 
 export const defaultCities = [
+  { value: '42.166666666 -7.5', label: 'Ourense, ES' },
+  { value: '19.353773 -99.13589', label: 'Mexico City, MX' },
+  { value: '51.507222222 -0.1275', label: 'Milan, IT' },
   { value: '53.12744 23.15649', label: 'Białystok, PL' },
   { value: '40.4165 -3.7026', label: 'Madrid, ES' },
+  { value: '51.507222222 -0.1275', label: 'London, GB' },
   { value: '41.01 28.960277777', label: 'Istanbul, TR' },
-  { value: '42.340833333 -3.699722222', label: 'Burgos, ES' },
   { value: '40.7128 -74.0060', label: 'New York City, US' },
   { value: '35.683889 139.774444', label: 'Tokyo, JP' },
-  { value: '37.986111111 -1.130277777', label: 'Murcia, ES' },
-  { value: '40.833333333 14.25', label: 'Naples, IT' },
+  { value: '45.466944444 9.19', label: 'Las Palmas de Gran Canaria, ES' },
 ];
 
 export const fetchCityName = async (crd, geoApiOptions) => {

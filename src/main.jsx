@@ -11,9 +11,9 @@ import { CityProvider } from './contexts/CityContext.jsx';
 import { TemperatureUnitProvider } from './contexts/TemperatureUnitContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <CityProvider>
-    <TemperatureUnitProvider>
-      <BrowserRouter>
+  <BrowserRouter>
+    <CityProvider>
+      <TemperatureUnitProvider>
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/" element={<Today />} />
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </TemperatureUnitProvider>
-  </CityProvider>
+      </TemperatureUnitProvider>
+    </CityProvider>
+  </BrowserRouter>
 );

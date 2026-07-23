@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './NavBar.css';
-import { NavLink } from 'react-router-dom';
-import { useCity } from '../../contexts/CityContext';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
+  // Keep the city in the URL when switching sections.
+  const { search } = useLocation();
+
   return (
     <nav className="navBar">
       <ul className="navList">
         <li>
-          <NavLink to={`/`} aria-label="Link to Today page">Today</NavLink>
+          <NavLink to={{ pathname: '/', search }} aria-label="Link to Today page">Today</NavLink>
         </li>
         <li>
-          <NavLink to={`/hours`} aria-label="Link to Hours page">Hours</NavLink>
+          <NavLink to={{ pathname: '/hours', search }} aria-label="Link to Hours page">Hours</NavLink>
         </li>
         <li>
-          <NavLink to={`/days`} aria-label="Link to Days page">Days</NavLink>
+          <NavLink to={{ pathname: '/days', search }} aria-label="Link to Days page">Days</NavLink>
         </li>
       </ul>
     </nav>
