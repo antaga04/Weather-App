@@ -8,11 +8,6 @@
   display: flex;
 }
 
-.deleteBtn svg {
-  width: 1.75rem;
-  height: 1.75rem;
-}
-
 .newCity-container {
   padding: 0 2rem;
 }
@@ -145,10 +140,5 @@
   .city-item {
     transform: scale(1.15) translateY(-30px);
     opacity: 0;
-  }
-
-  .deleteBtn svg {
-    width: 2.5rem;
-    height: 2.5rem;
   }
 }
